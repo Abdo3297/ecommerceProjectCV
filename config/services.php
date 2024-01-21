@@ -46,9 +46,4 @@ return [
         'client_secret' => 'b0bf0d98ea054322f79d757d2faa479e7d816ba1c62bf3c4bf1afd0d2011ea74',
         'redirect' =>'http://127.0.0.1:8000/api/auth/dribbble/callback',
     ],
-    'facebook' => [
-        'client_id' => '243005525410194',
-        'client_secret' => '96b734b526dfb4e55b865ab3adbe4a8a',
-        'redirect' =>'http://127.0.0.1:8000/api/auth/facebook/callback',
-    ],
 ];

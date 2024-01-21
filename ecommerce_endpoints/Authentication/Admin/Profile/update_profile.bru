@@ -1,0 +1,22 @@
+meta {
+  name: update_profile
+  type: http
+  seq: 2
+}
+
+put {
+  url: {{url}}/admin/update_profile
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: 7|zvg7OjyMiehz8A640yXoVf354eGsSse4F4GJGjlE75a48e4b
+}
+
+body:json {
+  {
+    "name":"abdelrahman hassan",
+    "birth":"12-01-2002"
+  }
+}

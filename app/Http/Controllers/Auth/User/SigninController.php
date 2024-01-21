@@ -17,6 +17,7 @@ class SigninController extends Controller
         $data = $request->validated();
         $user = User::where('email', $data['email'])->first();
         if ($user && Hash::check($data['password'], $user->password)) {
+            $user->tokens()->delete();
             $token = $user->createToken("token")->plainTextToken;
             return $this->registerOrLogin('Logged User', UserResource::make($user), $token, 200);
         }

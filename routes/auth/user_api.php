@@ -34,9 +34,6 @@ Route::middleware('auth:userapi')->prefix('user')->group(function(){
 // google socialite login
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
-// facebook socialite login
-Route::get('auth/facebook', [FacebookController::class, 'redirectToFacebook']);
-Route::get('auth/facebook/callback', [FacebookController::class, 'handleFacebookCallback']);
 // github socialite login
 Route::get('auth/github', [GithubController::class, 'redirectToGithub']);
 Route::get('auth/github/callback', [GithubController::class, 'handleGithubCallback']);

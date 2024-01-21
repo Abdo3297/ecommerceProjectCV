@@ -1,0 +1,15 @@
+meta {
+  name: resend_otp
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{url}}/admin/resend_otp
+  body: multipartForm
+  auth: none
+}
+
+body:multipart-form {
+  email: admin@admin.com
+}
