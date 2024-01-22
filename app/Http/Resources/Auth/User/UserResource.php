@@ -10,10 +10,12 @@ class UserResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
+            'user_id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
             'birth' => $this->formatBirthDate($this->birth),
+            'roles' => $this->roles->pluck('name') ?? [],
+            'roles.permissions' => $this->getPermissionsViaRoles()->pluck(['name']) ?? [],
         ];
     }
     protected function formatBirthDate($birth)
