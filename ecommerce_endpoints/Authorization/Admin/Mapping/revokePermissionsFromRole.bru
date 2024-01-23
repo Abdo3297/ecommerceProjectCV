@@ -1,0 +1,20 @@
+meta {
+  name: revokePermissionsFromRole
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{url}}/revokePermissionsFromRole
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: 1|ZtCKBOHkTjQH6HEJsh0f1zVtaO7SC2GYXmwZTmF7c90adaa4
+}
+
+body:multipart-form {
+  role_id: 2
+  permissions[0]: show_profile
+}

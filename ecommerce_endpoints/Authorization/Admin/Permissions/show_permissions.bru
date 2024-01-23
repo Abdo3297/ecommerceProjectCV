@@ -1,0 +1,15 @@
+meta {
+  name: show_permissions
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{url}}/permissions
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: 1|GVq95cQw3Mzm5aHorAgxqdpM1gVVKHGSPLuqCqrS6afa25ee
+}
