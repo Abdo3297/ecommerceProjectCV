@@ -18,6 +18,6 @@ class UpdateProfileController extends Controller
         $data['birth'] = Carbon::createFromFormat('d-m-Y', $data['birth']);
         $user = auth('userapi')->user();
         $user->update($data);
-        return $this->update(UserResource::make($user));
+        return $this->okResponse('profile updated',UserResource::make($user));
     }
 }

@@ -33,6 +33,6 @@ class SignupController extends Controller
 
         //$this->sendMail($user, new UserSignupMail($user));
 
-        return $this->registerOrLogin('Created User , Verify Your Email',UserResource::make($user),$token,201);
+        return $this->registerOrLogin('Created User',UserResource::make($user),$token,201);
     }
 }

@@ -17,6 +17,6 @@ class ResendOTPController extends Controller
         $data = $request->validated();
         $admin = Admin::where('email',$data['email'])->first();
         $this->sendMail($admin,new ResendOTPMail($admin));
-        return $this->okResponse('Resend OTP successfully');
+        return $this->okResponse('Resend OTP successfully',[]);
     }
 }

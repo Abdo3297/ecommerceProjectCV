@@ -20,13 +20,13 @@ class MappingController extends Controller
         $data = $request->validated();
         $role = Role::where('guard_name', 'userapi')->find($data['role_id']);
         $role->syncPermissions($data['permissions']);
-        return $this->okResponse('Permissions assigned successfully');
+        return $this->okResponse('Permissions assigned successfully',[]);
     }
     public function revokePermissionsFromRole(RolePermissionRequest $request)
     {
         $data = $request->validated();
         $role = Role::where('guard_name', 'userapi')->find($data['role_id']);
         $role->revokePermissionTo($data['permissions']);
-        return $this->okResponse('Permissions revoked successfully');
+        return $this->okResponse('Permissions revoked successfully',[]);
     }
 }

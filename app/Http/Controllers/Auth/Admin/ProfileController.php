@@ -13,6 +13,6 @@ class ProfileController extends Controller
     public function __invoke()
     {
         $admin = auth('adminapi')->user();
-        return $this->read(AdminResource::make($admin));
+        return $this->okResponse('data fetched successfully',AdminResource::make($admin));
     }
 }

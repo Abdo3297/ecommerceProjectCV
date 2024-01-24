@@ -12,6 +12,6 @@ class ProfileController extends Controller
     public function __invoke()
     {
         $user = auth('userapi')->user();
-        return $this->read(UserResource::make($user));
+        return $this->okResponse('data fetched successfully',UserResource::make($user));
     }
 }

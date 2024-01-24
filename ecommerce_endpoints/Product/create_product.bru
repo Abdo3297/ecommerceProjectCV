@@ -1,0 +1,26 @@
+meta {
+  name: create_product
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{url}}/product
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: BUbVwHgkpL4huKtIPe000uxAMzP8V6stm1HmV3era4033261
+}
+
+body:form-urlencoded {
+  : 
+}
+
+body:multipart-form {
+  name: test
+  price: 52
+  category_id: 4
+  image: 
+}

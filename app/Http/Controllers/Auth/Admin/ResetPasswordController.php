@@ -24,6 +24,6 @@ class ResetPasswordController extends Controller
             'password' => Hash::make($data['password'])
         ]);
         $admin->tokens()->delete();
-        return $this->okResponse('Password Reset Successfully');
+        return $this->okResponse('Password Reset Successfully',[]);
     }
 }

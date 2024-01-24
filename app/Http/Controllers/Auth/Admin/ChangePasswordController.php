@@ -20,6 +20,6 @@ class ChangePasswordController extends Controller
         $admin->update([
             'password' => Hash::make($data['new_password']),
         ]);
-        return $this->okResponse('Password Changed Successfully');
+        return $this->okResponse('Password Changed Successfully',[]);
     }
 }

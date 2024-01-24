@@ -15,7 +15,7 @@ class LogoutController extends Controller
         if ($user) {
             $user = User::find($user->id);
             $user->tokens()->delete();
-            return $this->okResponse('Logged Out');
+            return $this->okResponse('Logged Out',[]);
         }
     }
 }

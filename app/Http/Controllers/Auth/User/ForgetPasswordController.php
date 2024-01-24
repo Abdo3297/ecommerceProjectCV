@@ -17,6 +17,6 @@ class ForgetPasswordController extends Controller
         $data = $request->validated();
         $user = User::where('email', $data['email'])->first();
         $this->sendMail($user,new ForgetPasswordMail($user));
-        return $this->okResponse('OTP Sent successfully');
+        return $this->okResponse('OTP Sent successfully',[]);
     }
 }

@@ -20,6 +20,6 @@ class DeleteProfileController extends Controller
         }
         $admin->tokens()->delete();
         $admin->delete();
-        return $this->okResponse('Account deleted successfully');
+        return $this->okResponse('Account deleted successfully',[]);
     }
 }

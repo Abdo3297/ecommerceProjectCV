@@ -1,0 +1,20 @@
+meta {
+  name: update_category
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{url}}/category/1000
+  body: multipartForm
+  auth: bearer
+}
+
+auth:bearer {
+  token: nRvfuGcx9CJHKp3SPp7rTjZ1dqXitXNDkAFk4Y8I5778fbbc
+}
+
+body:multipart-form {
+  _method: put
+  name: testat
+}

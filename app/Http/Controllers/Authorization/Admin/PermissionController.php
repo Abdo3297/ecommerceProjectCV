@@ -22,25 +22,25 @@ class PermissionController extends Controller
     public function index()
     {
         if(Permission::exists()) {
-            $permissions = Permission::where('guard_name','userapi')->paginate(4);
-            return PermissionResource::collection($permissions);
+            $permissions = Permission::where('guard_name','userapi')->paginate(PAGINATE);
+            return $this->paginateResponse('data fetched successfully',PermissionResource::collection($permissions));
         }
-        return $this->errorResponse('Data Not Found');
+        return $this->errorResponse();
     }
     public function show($id)
     {
         $permission = Permission::where('guard_name','userapi')->find($id);
         if($permission) {
-            return PermissionResource::make($permission);
+            return $this->okResponse('data fetched successfully',PermissionResource::make($permission));
         }
-        return $this->errorResponse('Record Not Found');
+        return $this->errorResponse();
     }
     public function store(PermissionRequest $request)
     {
         $data = $request->validated();
         $permission = Permission::create($data);
         if($permission) {
-            return $this->okResponse('permission created');
+            return $this->okResponse('permission created',PermissionResource::make($permission));
         }
     }
     public function update(PermissionRequest $request,$id)
@@ -49,7 +49,7 @@ class PermissionController extends Controller
         $permission = Permission::where('guard_name','userapi')->find($id);
         $permission->update($data);
         if($permission) {
-            return $this->okResponse('permission updated');
+            return $this->okResponse('permission updated',PermissionResource::make($permission));
         }
     }
     public function destroy($id)
@@ -57,8 +57,8 @@ class PermissionController extends Controller
         $permission = Permission::where('guard_name','userapi')->find($id);
         if($permission) {
             $permission->delete();
-            return $this->okResponse('Record Deleted');
+            return $this->okResponse('Record Deleted',[]);
         }
-        return $this->errorResponse('Record Not Found');
+        return $this->errorResponse();
     }
 }

@@ -17,16 +17,30 @@ class AdminRolesPermissionsSeeder extends Seeder
     {
         // create permission
         $adminPermissions = [
+
             'add_role',
             'show_role',
             'edit_role',
             'delete_role',
+
             'add_permission',
             'show_permission',
             'edit_permission',
             'delete_permission',
+
             'assignPermissionsToRole',
-            'revokePermissionsFromRole'
+            'revokePermissionsFromRole',
+            
+            'add_category',
+            'show_category',
+            'edit_category',
+            'delete_category',
+
+            'add_product',
+            'show_product',
+            'edit_product',
+            'delete_product',
+            
         ];
         foreach ($adminPermissions as $permission) {
             Permission::updateOrCreate(['name' => $permission], [

@@ -22,25 +22,25 @@ class RoleController extends Controller
     public function index()
     {
         if (Role::exists()) {
-            $roles = Role::where('guard_name', 'userapi')->paginate(4);
-            return RoleResource::collection($roles);
+            $roles = Role::where('guard_name', 'userapi')->paginate(PAGINATE);
+            return $this->paginateResponse('data fetched successfully',RoleResource::collection($roles)); 
         }
-        return $this->errorResponse('Data Not Found');
+        return $this->errorResponse();
     }
     public function show($id)
     {
         $role = Role::where('guard_name', 'userapi')->find($id);
         if ($role) {
-            return RoleResource::make($role);
+            return $this->okResponse('data fetched successfully',RoleResource::make($role));
         }
-        return $this->errorResponse('Record Not Found');
+        return $this->errorResponse();
     }
     public function store(RoleRequest $request)
     {
         $data = $request->validated();
         $role = Role::create($data);
         if ($role) {
-            return $this->okResponse('role created');
+            return $this->okResponse('role created',RoleResource::make($role));
         }
     }
     public function update(RoleRequest $request, $id)
@@ -49,7 +49,7 @@ class RoleController extends Controller
         $role = Role::where('guard_name', 'userapi')->find($id);
         $role->update($data);
         if ($role) {
-            return $this->okResponse('role updated');
+            return $this->okResponse('role updated',RoleResource::make($role));
         }
     }
     public function destroy($id)
@@ -57,8 +57,8 @@ class RoleController extends Controller
         $role = Role::where('guard_name', 'userapi')->find($id);
         if ($role) {
             $role->delete();
-            return $this->okResponse('Record Deleted');
+            return $this->okResponse('Record Deleted',[]);
         }
-        return $this->errorResponse('Record Not Found');
+        return $this->errorResponse();
     }
 }
