@@ -12,8 +12,8 @@ class ProductSeeder extends Seeder
 {
     public function run(): void
     {
-        $recordsToInsert = 1000;
-        $chunkSize = 100;
+        $recordsToInsert = 50;
+        $chunkSize = 10;
         // Get all category IDs
         $categoryIds = Category::pluck('id')->toArray();
         for ($i = 0; $i < ceil($recordsToInsert / $chunkSize); $i++) {

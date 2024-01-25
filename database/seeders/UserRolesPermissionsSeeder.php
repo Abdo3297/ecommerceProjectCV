@@ -16,6 +16,9 @@ class UserRolesPermissionsSeeder extends Seeder
             'show_profile',
             'edit_profile',
             'delete_profile',
+
+            'show_product',
+            'show_category',
         ];
         foreach ($userPermissions as $permission) {
             Permission::updateOrCreate(['name' => $permission], [

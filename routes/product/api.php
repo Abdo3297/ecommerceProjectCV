@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Product\ProductController;
 
-Route::middleware('auth:adminapi')->group(function(){
+Route::middleware(['auth:adminapi','auth:userapi'])->group(function(){
     Route::apiResource('product',ProductController::class);
 });

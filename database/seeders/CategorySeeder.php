@@ -11,8 +11,8 @@ class CategorySeeder extends Seeder
 {
     public function run(): void
     {
-        $recordsToInsert = 1000;
-        $chunkSize = 100;
+        $recordsToInsert = 50;
+        $chunkSize = 10;
         for ($i = 0; $i < ceil($recordsToInsert / $chunkSize); $i++) {
             $data = [];
             for ($j = 0; $j < $chunkSize; $j++) {
