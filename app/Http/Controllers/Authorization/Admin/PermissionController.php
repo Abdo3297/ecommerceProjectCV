@@ -57,7 +57,7 @@ class PermissionController extends Controller
         $permission = Permission::where('guard_name','userapi')->find($id);
         if($permission) {
             $permission->delete();
-            return $this->okResponse('Record Deleted',[]);
+            return $this->okResponse('permission deleted',[]);
         }
         return $this->errorResponse();
     }

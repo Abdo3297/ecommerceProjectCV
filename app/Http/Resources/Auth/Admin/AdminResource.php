@@ -9,10 +9,12 @@ class AdminResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
+        $defaultImage = asset('Default/profile.jpeg');
         return [
             'admin_id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
+            'image' => $this->getFirstMediaUrl('admin_profile_image')?:$defaultImage,
             'birth' => $this->formatBirthDate($this->birth),
             'roles' => $this->roles->pluck('name') ?? [],
             'roles.permissions' => $this->getPermissionsViaRoles()->pluck(['name']) ?? [],

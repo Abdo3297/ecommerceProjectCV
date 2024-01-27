@@ -43,7 +43,11 @@ class AdminRolesPermissionsSeeder extends Seeder
             
         ];
         foreach ($adminPermissions as $permission) {
-            Permission::updateOrCreate(['name' => $permission], [
+            /*Permission::updateOrCreate(['name' => $permission], [
+                'name' => $permission,
+                'guard_name' => 'adminapi',
+            ]);*/
+            Permission::Create( [
                 'name' => $permission,
                 'guard_name' => 'adminapi',
             ]);

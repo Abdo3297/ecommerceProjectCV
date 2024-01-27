@@ -7,6 +7,7 @@ use App\Traits\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Category\CategoryRequest;
 use App\Http\Resources\Category\CategoryResource;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {

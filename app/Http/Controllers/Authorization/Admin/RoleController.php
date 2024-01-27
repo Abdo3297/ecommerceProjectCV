@@ -57,7 +57,7 @@ class RoleController extends Controller
         $role = Role::where('guard_name', 'userapi')->find($id);
         if ($role) {
             $role->delete();
-            return $this->okResponse('Record Deleted',[]);
+            return $this->okResponse('role deleted',[]);
         }
         return $this->errorResponse();
     }

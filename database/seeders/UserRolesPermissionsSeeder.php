@@ -21,7 +21,11 @@ class UserRolesPermissionsSeeder extends Seeder
             'show_category',
         ];
         foreach ($userPermissions as $permission) {
-            Permission::updateOrCreate(['name' => $permission], [
+            /*Permission::updateOrCreate(['name' => $permission], [
+                'name' => $permission,
+                'guard_name' => 'userapi',
+            ]);*/
+            Permission::Create( [
                 'name' => $permission,
                 'guard_name' => 'userapi',
             ]);

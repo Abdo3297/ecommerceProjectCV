@@ -14,7 +14,6 @@ class ProductSeeder extends Seeder
     {
         $recordsToInsert = 50;
         $chunkSize = 10;
-        // Get all category IDs
         $categoryIds = Category::pluck('id')->toArray();
         for ($i = 0; $i < ceil($recordsToInsert / $chunkSize); $i++) {
             $data = [];
