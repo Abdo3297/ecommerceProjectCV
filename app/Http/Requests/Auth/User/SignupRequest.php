@@ -15,10 +15,10 @@ class SignupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name'=>['required','string','min:3','max:50'],
-            'email'=>['required','string','email','unique:' . User::class],
-            'password' => ['required','confirmed', Rules\Password::defaults()],
-            'birth' => ['required','date','date_format:d-m-Y'],
+            'name' => ['required', 'string', 'min:3', 'max:50'],
+            'email' => ['required', 'string', 'email', 'unique:' . User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'birth' => ['required', 'date', 'date_format:d-m-Y'],
         ];
     }
 }

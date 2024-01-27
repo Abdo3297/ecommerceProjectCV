@@ -19,7 +19,7 @@ class SignupController extends Controller
     {
         $data = $request->validated();
 
-        $data['birth'] = Carbon::createFromFormat('d-m-Y', $data['birth']);
+        // $data['birth'] = Carbon::createFromFormat('d-m-Y', $data['birth']);
 
         $user = User::create($data);
 

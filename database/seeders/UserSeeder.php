@@ -23,7 +23,6 @@ class UserSeeder extends Seeder
                 $user = [
                     'name' => fake()->name(),
                     'email' => fake()->safeEmail(),
-                    'birth' => Carbon::createFromFormat('d-m-Y', fake()->date('d-m-Y')),
                     'email_verified_at' => Carbon::now(),
                     'password' => Hash::make('Au.@8391'),
                     'provider' => null,
