@@ -18,6 +18,7 @@ class CategoryController extends Controller
         $this->middleware('permission:add_category')->only(['store']);
         $this->middleware('permission:edit_category')->only(['update']);
         $this->middleware('permission:delete_category')->only(['destroy']);
+        $this->middleware('permission:search_category')->only(['search']);
     }
     /**
      * Display a listing of the resource.
@@ -78,6 +79,14 @@ class CategoryController extends Controller
         if ($category) {
             $category->delete();
             return $this->okResponse('category deleted', []);
+        }
+        return $this->errorResponse();
+    }
+    public function search(Request $request) {
+        $searchTerm = $request->query('name');
+        if (Category::exists())  {
+            $categories = Category::where('name', 'like', "%$searchTerm%")->paginate(PAGINATE);
+            return $this->paginateResponse('data fetched successfully', CategoryResource::collection($categories));
         }
         return $this->errorResponse();
     }

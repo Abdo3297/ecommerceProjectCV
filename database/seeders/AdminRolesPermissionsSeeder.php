@@ -35,11 +35,17 @@ class AdminRolesPermissionsSeeder extends Seeder
             'show_category',
             'edit_category',
             'delete_category',
+            'search_category',
 
             'add_product',
             'show_product',
             'edit_product',
             'delete_product',
+            'search_product',
+            'filter_product',
+
+
+            'show_statistics',
             
         ];
         foreach ($adminPermissions as $permission) {

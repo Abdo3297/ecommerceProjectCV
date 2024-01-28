@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Product;
 
 use App\Models\Product;
 use App\Traits\Response;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\ProductRequest;
 use App\Http\Resources\Product\ProductResource;
@@ -18,6 +19,7 @@ class ProductController extends Controller
         $this->middleware('permission:add_product')->only(['store']);
         $this->middleware('permission:edit_product')->only(['update']);
         $this->middleware('permission:delete_product')->only(['destroy']);
+        $this->middleware('permission:search_product')->only(['search']);
     }
     /**
      * Display a listing of the resource.
@@ -56,12 +58,12 @@ class ProductController extends Controller
         }
     }
 
-    
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ProductRequest $request,$id)
+    public function update(ProductRequest $request, $id)
     {
         $data = $request->validated();
         $product = Product::find($id);
@@ -85,5 +87,30 @@ class ProductController extends Controller
             return $this->okResponse('product deleted', []);
         }
         return $this->errorResponse();
+    }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->query('name');
+        if (Product::exists()) {
+            $products = Product::where('name', 'like', "%$searchTerm%")->paginate(PAGINATE);
+            return $this->paginateResponse('data fetched successfully', ProductResource::collection($products));
+        }
+    }
+    public function filterByPrice(Request $request)
+    {
+        $minPrice = $request->query('min_price');
+        $maxPrice = $request->query('max_price');
+        $query = Product::query(); // Start with a fresh query builder
+        if ($minPrice) {
+            $query->where('price', '>=', $minPrice);
+        }
+        if ($maxPrice) {
+            $query->where('price', '<=', $maxPrice);
+        }
+        if (Product::exists())  {
+            $products = $query->paginate(PAGINATE);
+            return $this->paginateResponse('data fetched successfully', ProductResource::collection($products));
+        }
     }
 }
