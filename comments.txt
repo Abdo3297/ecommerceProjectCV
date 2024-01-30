@@ -1,0 +1,46 @@
+/*
+public function getBirthAttribute($value)
+    {
+        return Carbon::parse($value)->format('d-m-Y');
+    }
+    public function setBirthAttribute($value)
+    {
+        $this->attributes['birth'] = Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d');
+    }
+*/
+
+
+
+    
+// 'birth' => $this->formatBirthDate($this->birth),
+
+
+/*
+{{url}}/admin/product/filterByPrice?min_price=70&&max_price=99
+*/
+
+
+// Route::post('product/filterByPrice',[ProductController::class,'filterByPrice']);
+
+
+
+/*
+    public function filterByPrice(Request $request)
+    {
+        $minPrice = $request->query('min_price');
+        $maxPrice = $request->query('max_price');
+        $query = Product::query(); // Start with a fresh query builder
+        if ($minPrice) {
+            $query->where('price', '>=', $minPrice);
+        }
+        if ($maxPrice) {
+            $query->where('price', '<=', $maxPrice);
+        }
+        if (Product::exists())  {
+            $products = $query->paginate(PAGINATE);
+            return $this->paginateResponse('data fetched successfully', ProductResource::collection($products));
+        }
+    }
+    */
+
+

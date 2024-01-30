@@ -24,10 +24,6 @@ class UserRolesPermissionsSeeder extends Seeder
             'filter_product'
         ];
         foreach ($userPermissions as $permission) {
-            /*Permission::updateOrCreate(['name' => $permission], [
-                'name' => $permission,
-                'guard_name' => 'userapi',
-            ]);*/
             Permission::Create( [
                 'name' => $permission,
                 'guard_name' => 'userapi',

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth\Admin;
 
+use App\Models\Admin;
 use App\Traits\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -14,6 +15,7 @@ class ChangePasswordController extends Controller
     {
         $data = $request->validated();
         $admin = auth('adminapi')->user();
+        $admin = new Admin();
         if (!Hash::check($data['current_password'], $admin->password)) {
             return $this->errorResponse('Password Not Valid');
         }

@@ -15,16 +15,9 @@ class AdminResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'image' => $this->getFirstMediaUrl('admin_profile_image')?:$defaultImage,
-            'birth' => $this->formatBirthDate($this->birth),
+            'birth' => $this->birth,
             'roles' => $this->roles->pluck('name') ?? [],
             'roles.permissions' => $this->getPermissionsViaRoles()->pluck(['name']) ?? [],
         ];
-    }
-    protected function formatBirthDate($birth)
-    {
-        if ($birth instanceof \Carbon\Carbon) {
-            return $birth->format('d-m-Y');
-        }
-        return \Carbon\Carbon::createFromFormat('Y-m-d', $birth)->format('d-m-Y');
     }
 }

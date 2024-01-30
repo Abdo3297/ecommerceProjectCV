@@ -9,21 +9,15 @@ class UserResource extends JsonResource
 {
     public function toArray(Request $request): array
     {
+        $defaultImage = asset('Default/profile.jpeg');
         return [
             'user_id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            // 'birth' => $this->formatBirthDate($this->birth),
             'birth' => $this->birth,
+            'image' => $this->getFirstMediaUrl('user_profile_image')?:$defaultImage,
             'roles' => $this->roles->pluck('name') ?? [],
             'roles.permissions' => $this->getPermissionsViaRoles()->pluck(['name']) ?? [],
         ];
     }
-    /*protected function formatBirthDate($birth)
-    {
-        if ($birth instanceof \Carbon\Carbon) {
-            return $birth->format('d-m-Y');
-        }
-        return \Carbon\Carbon::createFromFormat('Y-m-d', $birth)->format('d-m-Y');
-    }*/
 }

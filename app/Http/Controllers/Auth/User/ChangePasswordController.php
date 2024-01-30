@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth\User;
 
+use App\Models\User;
 use App\Traits\Response;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -14,6 +15,7 @@ class ChangePasswordController extends Controller
     {
         $data = $request->validated();
         $user = auth('userapi')->user();
+        $user = new User();
         if (!Hash::check($data['current_password'], $user->password)) {
             return $this->errorResponse('Password Not Valid');
         }

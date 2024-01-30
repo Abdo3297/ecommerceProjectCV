@@ -13,7 +13,7 @@ class LogoutController extends Controller
     {
         $user = auth('userapi')->user();
         if ($user) {
-            $user = User::find($user->id);
+            $user = new User();
             $user->tokens()->delete();
             return $this->okResponse('Logged Out',[]);
         }

@@ -18,21 +18,14 @@ class SignupController extends Controller
     public function __invoke(SignupRequest $request)
     {
         $data = $request->validated();
-
-        // $data['birth'] = Carbon::createFromFormat('d-m-Y', $data['birth']);
-
         $user = User::create($data);
-
         // assign role to user
         $user_role = Role::where('name','user')->first();
         if($user_role){
             $user->assignRole($user_role);
         }
-        
         $token = $user->createToken("token")->plainTextToken;
-
         //$this->sendMail($user, new UserSignupMail($user));
-
         return $this->registerOrLogin('Created User',UserResource::make($user),$token,201);
     }
 }

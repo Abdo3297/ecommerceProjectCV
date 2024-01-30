@@ -10,19 +10,20 @@ use Spatie\MediaLibrary\InteractsWithMedia;
 
 class Product extends Model implements HasMedia
 {
-    use HasFactory, InteractsWithMedia;
+    use HasFactory, 
+        InteractsWithMedia;
 
     protected $fillable = [
         'name',
         'price',
         'category_id'
     ];
-
+    // relationships
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
-
+    // collection of spatie media
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('product_image');

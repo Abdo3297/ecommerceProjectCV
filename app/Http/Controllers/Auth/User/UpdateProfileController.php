@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Auth\User;
 
 use App\Traits\Response;
-use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\User\UpdateProfileRequest;
 use App\Http\Resources\Auth\User\UserResource;
+use App\Models\User;
 
 class UpdateProfileController extends Controller
 {
@@ -15,9 +14,12 @@ class UpdateProfileController extends Controller
     public function __invoke(UpdateProfileRequest $request)
     {
         $data = $request->validated();
-        $data['birth'] = Carbon::createFromFormat('d-m-Y', $data['birth']);
         $user = auth('userapi')->user();
+        $user = new User();
         $user->update($data);
+        if ($request->hasFile('image')) {
+            $user->addMediaFromRequest('image')->toMediaCollection('user_profile_image');
+        }
         return $this->okResponse('profile updated',UserResource::make($user));
     }
 }

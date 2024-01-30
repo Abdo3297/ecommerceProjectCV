@@ -42,17 +42,12 @@ class AdminRolesPermissionsSeeder extends Seeder
             'edit_product',
             'delete_product',
             'search_product',
-            'filter_product',
 
 
             'show_statistics',
             
         ];
         foreach ($adminPermissions as $permission) {
-            /*Permission::updateOrCreate(['name' => $permission], [
-                'name' => $permission,
-                'guard_name' => 'adminapi',
-            ]);*/
             Permission::Create( [
                 'name' => $permission,
                 'guard_name' => 'adminapi',
@@ -72,9 +67,8 @@ class AdminRolesPermissionsSeeder extends Seeder
         $admin = Admin::create([
             'name' => 'admin',
             'email' => 'admin@admin.com',
-            'password' => Hash::make('123456789'),
+            'password' => Hash::make('Au.@8391'),
             'email_verified_at' => Carbon::now(),
-            'birth' => Carbon::createFromFormat('d-m-Y', '31-12-1999'),
             'remember_token' => Str::random(10),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

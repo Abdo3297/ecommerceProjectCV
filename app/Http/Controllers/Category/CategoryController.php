@@ -20,9 +20,7 @@ class CategoryController extends Controller
         $this->middleware('permission:delete_category')->only(['destroy']);
         $this->middleware('permission:search_category')->only(['search']);
     }
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         if (Category::exists()) {
@@ -32,9 +30,6 @@ class CategoryController extends Controller
         return $this->errorResponse();
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show($id)
     {
         $category = Category::find($id);
@@ -44,9 +39,6 @@ class CategoryController extends Controller
         return $this->errorResponse();
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(CategoryRequest $request)
     {
         $data = $request->validated();
@@ -55,10 +47,7 @@ class CategoryController extends Controller
             return $this->okResponse('category created', CategoryResource::make($category));
         }
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
+    
     public function update(CategoryRequest $request, $id)
     {
         $data = $request->validated();
@@ -70,9 +59,6 @@ class CategoryController extends Controller
         return $this->errorResponse();
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         $category = Category::find($id);
@@ -82,6 +68,7 @@ class CategoryController extends Controller
         }
         return $this->errorResponse();
     }
+    
     public function search(Request $request) {
         $searchTerm = $request->query('name');
         if (Category::exists())  {

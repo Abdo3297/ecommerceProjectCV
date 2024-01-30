@@ -20,7 +20,7 @@ class ProductSeeder extends Seeder
             for ($j = 0; $j < $chunkSize; $j++) {
                 $data[] = [
                     'name' => fake()->name(),
-                    'price' => fake()->numberBetween(100, 9999) / 100,
+                    'price' => fake()->randomNumber(5, true),
                     'category_id' => fake()->randomElement($categoryIds),
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),

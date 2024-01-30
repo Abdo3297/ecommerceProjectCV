@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Auth\Admin;
 
+use App\Models\Admin;
 use App\Traits\Response;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Auth\Admin\DeleteProfileRequest;
@@ -15,6 +15,7 @@ class DeleteProfileController extends Controller
     {
         $data = $request->validated();
         $admin = auth('adminapi')->user();
+        $admin = new Admin();
         if (!Hash::check($data['password'], $admin->password)) {
             return $this->errorResponse('Invalid password');
         }

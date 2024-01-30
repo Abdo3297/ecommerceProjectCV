@@ -11,7 +11,6 @@ use App\Http\Controllers\Auth\User\SignupController;
 use App\Http\Controllers\Auth\User\ProfileController;
 use App\Http\Controllers\Auth\User\DribbbleController;
 use App\Http\Controllers\Auth\User\DeleteProfileController;
-use App\Http\Controllers\Auth\User\FacebookController;
 use App\Http\Controllers\Auth\User\ForgetPasswordController;
 use App\Http\Controllers\Auth\User\ResetPasswordController;
 use App\Http\Controllers\Auth\User\UpdateProfileController;

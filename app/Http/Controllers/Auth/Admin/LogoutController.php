@@ -13,7 +13,7 @@ class LogoutController extends Controller
     {
         $admin = auth('adminapi')->user();
         if ($admin) {
-            $admin = Admin::find($admin->id);
+            $admin = new Admin();
             $admin->tokens()->delete();
             return $this->okResponse('Logged Out',[]);
         }
