@@ -65,9 +65,9 @@ class AdminRolesPermissionsSeeder extends Seeder
 
         // give role to user
         $admin = Admin::create([
-            'name' => 'admin',
-            'email' => 'admin@admin.com',
-            'password' => Hash::make('Au.@8391'),
+            'name' => 'abdo',
+            'email' => 'abdo@abdo.com',
+            'password' => Hash::make('abdo@abdo.com'),
             'email_verified_at' => Carbon::now(),
             'remember_token' => Str::random(10),
             'created_at' => Carbon::now(),

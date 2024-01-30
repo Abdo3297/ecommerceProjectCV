@@ -18,7 +18,7 @@ class SigninController extends Controller
         $admin = Admin::where('email', $data['email'])->first();
         if ($admin && Hash::check($data['password'], $admin->password)) {
             $admin->tokens()->delete();
-            $token = $admin->createToken("token")->plainTextToken;
+            $token = $admin->createToken('token')->plainTextToken;
             return $this->registerOrLogin('Logged Admin', AdminResource::make($admin), $token, 200);
         }
         return $this->errorResponse('Invalid email or password');
