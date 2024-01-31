@@ -21,7 +21,8 @@ class UserRolesPermissionsSeeder extends Seeder
             'show_category',
             'search_product',
             'search_category',
-            'filter_product'
+            'filter_product',
+            'make_order'
         ];
         foreach ($userPermissions as $permission) {
             Permission::Create( [

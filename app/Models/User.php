@@ -10,6 +10,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 use Spatie\MediaLibrary\HasMedia;
@@ -19,10 +20,10 @@ class User extends Authenticatable implements HasMedia
 {
     use HasApiTokens,
         HasFactory,
-        Notifiable, 
+        Notifiable,
         HasRoles,
         InteractsWithMedia;
-    
+
     protected $fillable = [
         'name',
         'email',
@@ -59,5 +60,10 @@ class User extends Authenticatable implements HasMedia
         return Attribute::make(
             set: fn ($value) => Hash::make($value)
         );
+    }
+
+    public function orders() :HasMany
+    {
+        return $this->hasMany(Order::class);
     }
 }

@@ -46,4 +46,10 @@ return [
         'client_secret' => 'b0bf0d98ea054322f79d757d2faa479e7d816ba1c62bf3c4bf1afd0d2011ea74',
         'redirect' =>'http://127.0.0.1:8000/api/auth/dribbble/callback',
     ],
+
+    'stripe' => [
+        'publishable_key' => 'pk_test_51OeLJEAIu0331BB3WSwS5Ru3KGph5oHqdbldhC8fKvE8mYNrrXmpkVVOS5aMBdJW13vfsW0bYgPf8Em62KhfVgNN00SZJhAh9r',
+        'secret_key' => 'sk_test_51OeLJEAIu0331BB3vv9iosMorba3e4Dfm4ePz01ueU9HCpioGD1RE8D0aUsWXF8VHp4HnOsSLXkGcONjVnymVVL500BOtHm3AZ',
+    ],
+    
 ];

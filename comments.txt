@@ -44,3 +44,54 @@ public function getBirthAttribute($value)
     */
 
 
+ $data = [];
+         $items = Order::select(['product_id', 'qty'])->get();
+         $data['items'] = [];
+         foreach ($items as $item) {
+             $product = DB::table('products')->where('id', $item->product_id)->first();
+             if ($product) {
+                 $data['items'][] = [
+                     'name' => $product->name,
+                     'price' => $product->price,
+                     'qty' => $item->qty
+                 ];
+             }
+         }
+         $data['invoice_id'] = 1;
+         $data['invoice_description'] = "Order Invoice";
+         $data['return_url'] = route('payment.success');
+         $data['cancel_url'] = route('payment.cancel');
+         // Calculate the total amount
+         $total = 0;
+         foreach ($data['items'] as $item) {
+             $total += $item['qty'] * $item['price'];
+         }
+         $data['total'] = $total;
+         $provider = new ExpressCheckout;
+         return $response = $provider->setExpressCheckout($data, true);
+         return redirect($response['paypal_link']);
+
+
+
+array:6 [▼ // app\Http\Controllers\Pay\PaypalController.php:56
+  "items" => array:2 [▼
+    0 => array:3 [▼
+      "name" => "Dr. Murray Predovic DVM"
+      "price" => "1.000"
+      "qty" => 9
+    ]
+    1 => array:3 [▼
+      "name" => "Dr. Murray Predovic DVM"
+      "price" => "1.000"
+      "qty" => 9
+    ]
+  ]
+  "invoice_id" => 1
+  "invoice_description" => "Order Invoice"
+  "return_url" => "http://127.0.0.1:8000/api/payment/success"
+  "cancel_url" => "http://127.0.0.1:8000/api/cancel"
+  "total" => 18.0
+]
+
+
+https://github.com/opcodesio/log-viewer?ref=arunas.dev
