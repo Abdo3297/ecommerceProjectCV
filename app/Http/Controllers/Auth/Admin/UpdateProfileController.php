@@ -15,7 +15,7 @@ class UpdateProfileController extends Controller
     {
         $data = $request->validated();
         $admin = auth('adminapi')->user();
-        $admin = new Admin();
+        // $admin = new Admin();
         $admin->update($data);
         if ($request->hasFile('image')) {
             $admin->addMediaFromRequest('image')->toMediaCollection('admin_profile_image');

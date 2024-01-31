@@ -16,7 +16,7 @@ class DeleteProfileController extends Controller
     {
         $data = $request->validated();
         $user = auth('userapi')->user();
-        $user = new User();
+        // $user = new User();
         if (!Hash::check($data['password'], $user->password)) {
             return $this->errorResponse('Invalid password');
         }

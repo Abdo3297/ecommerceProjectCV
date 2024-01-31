@@ -15,7 +15,7 @@ class ChangePasswordController extends Controller
     {
         $data = $request->validated();
         $admin = auth('adminapi')->user();
-        $admin = new Admin();
+        // $admin = new Admin();
         if (!Hash::check($data['current_password'], $admin->password)) {
             return $this->errorResponse('Password Not Valid');
         }

@@ -41,6 +41,7 @@ class User extends Authenticatable implements HasMedia
 
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'password' => 'hashed'
     ];
     // collection of spatie media
     public function registerMediaCollections(): void
@@ -53,12 +54,6 @@ class User extends Authenticatable implements HasMedia
         return Attribute::make(
             get: fn ($value) => Carbon::parse($value)->format('d-m-Y'),
             set: fn ($value) => Carbon::createFromFormat('d-m-Y', $value)->format('Y-m-d')
-        );
-    }
-    protected function Password(): Attribute
-    {
-        return Attribute::make(
-            set: fn ($value) => Hash::make($value)
         );
     }
 

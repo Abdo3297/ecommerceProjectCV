@@ -15,7 +15,7 @@ class DeleteProfileController extends Controller
     {
         $data = $request->validated();
         $admin = auth('adminapi')->user();
-        $admin = new Admin();
+        // $admin = new Admin();
         if (!Hash::check($data['password'], $admin->password)) {
             return $this->errorResponse('Invalid password');
         }

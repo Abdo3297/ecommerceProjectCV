@@ -15,7 +15,7 @@ class UpdateProfileController extends Controller
     {
         $data = $request->validated();
         $user = auth('userapi')->user();
-        $user = new User();
+        // $user = new User();
         $user->update($data);
         if ($request->hasFile('image')) {
             $user->addMediaFromRequest('image')->toMediaCollection('user_profile_image');
