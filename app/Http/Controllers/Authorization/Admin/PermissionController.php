@@ -23,7 +23,7 @@ class PermissionController extends Controller
     {
         if(Permission::exists()) {
             $permissions = Permission::where('guard_name','userapi')->paginate(PAGINATE);
-            return $this->paginateResponse('data fetched successfully',PermissionResource::collection($permissions));
+            return $this->paginateResponse(PermissionResource::collection($permissions));
         }
         return $this->errorResponse();
     }

@@ -25,7 +25,7 @@ class CategoryController extends Controller
     {
         if (Category::exists()) {
             $categories = Category::paginate(PAGINATE);
-            return $this->paginateResponse('data fetched successfully', CategoryResource::collection($categories));
+            return $this->paginateResponse(CategoryResource::collection($categories));
         }
         return $this->errorResponse();
     }
@@ -73,7 +73,7 @@ class CategoryController extends Controller
         $searchTerm = $request->query('name');
         if (Category::exists())  {
             $categories = Category::where('name', 'like', "%$searchTerm%")->paginate(PAGINATE);
-            return $this->paginateResponse('data fetched successfully', CategoryResource::collection($categories));
+            return $this->paginateResponse(CategoryResource::collection($categories));
         }
         return $this->errorResponse();
     }

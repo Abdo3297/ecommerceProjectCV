@@ -26,7 +26,7 @@ class ProductController extends Controller
     {
         if (Product::exists()) {
             $products = Product::paginate(PAGINATE);
-            return $this->paginateResponse('data fetched successfully', ProductResource::collection($products));
+            return $this->paginateResponse(ProductResource::collection($products));
         }
         return $this->errorResponse();
     }
@@ -80,7 +80,7 @@ class ProductController extends Controller
         $searchTerm = $request->query('name');
         if (Product::exists()) {
             $products = Product::where('name', 'like', "%$searchTerm%")->paginate(PAGINATE);
-            return $this->paginateResponse('data fetched successfully', ProductResource::collection($products));
+            return $this->paginateResponse(ProductResource::collection($products));
         }
     }
     

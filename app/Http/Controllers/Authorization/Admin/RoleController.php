@@ -23,7 +23,7 @@ class RoleController extends Controller
     {
         if (Role::exists()) {
             $roles = Role::where('guard_name', 'userapi')->paginate(PAGINATE);
-            return $this->paginateResponse('data fetched successfully',RoleResource::collection($roles)); 
+            return $this->paginateResponse(RoleResource::collection($roles)); 
         }
         return $this->errorResponse();
     }

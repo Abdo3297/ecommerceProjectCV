@@ -2,25 +2,42 @@
 
 namespace App\Traits;
 
-
-trait Response {
-    // auth
-    public function  registerOrLogin($msg,$user,$token,$status) 
+trait Response
+{
+    
+    public function signup($user, $token)
     {
         return response()->json([
-            'message' => $msg,
+            'message' => 'user created',
             'data' => [
                 'user' => $user,
                 'token' => $token,
                 'token_type' => 'Bearer',
             ],
             'status' => true,
-            'code' => $status,
-        ], $status);
+            'code' => 201,
+        ], 201);
     }
-    // ok & error response
-    public function okResponse($msg,$data)
+
+    public function signin($user, $token)
     {
+        return response()->json([
+            'message' => 'user login',
+            'data' => [
+                'user' => $user,
+                'token' => $token,
+                'token_type' => 'Bearer',
+            ],
+            'status' => true,
+            'code' => 200,
+        ], 200);
+    }
+    public function okResponse($msg, $data)
+    {
+        /*
+            $msg  => text when operation done
+            $data => return data if you want to return it , if not return []
+        */
         return response()->json([
             'message' => $msg,
             'data' => $data,
@@ -28,17 +45,32 @@ trait Response {
             'code' => 200,
         ], 200);
     }
+    public function createResponse($data)
+    {
+        /*
+            $msg  => text when operation done
+            $data => return data if you want to return it , if not return []
+        */
+        return response()->json([
+            'message' => 'created',
+            'data' => $data,
+            'status' => true,
+            'code' => 201,
+        ], 201);
+    }
     public function errorResponse($msg = 'data not found')
     {
-
+        /*
+            $msg  => 'data not found' default msg error , if you want another message send it as a parameter
+        */
         return response()->json([
             'message' => $msg,
             'data' => [],
             'status' => true,
-            'code' => 400,
-        ], 400);
+            'code' => 404,
+        ], 404);
     }
-    public function paginateResponse($msg,$data)
+    public function paginateResponse($data)
     {
         $dataFetched = $data->items();
 
@@ -57,12 +89,12 @@ trait Response {
         ];
 
         return response()->json([
-            'message' => $msg,
+            'message' => 'data fetched successfully',
             'data' => $dataFetched,
             'links' => $links,
             'meta' => $meta,
             'status' => true,
             'code' => 200,
-        ],200);
+        ], 200);
     }
 }
