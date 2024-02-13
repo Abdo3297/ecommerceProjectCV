@@ -26,6 +26,6 @@ class SignupController extends Controller
         }
         $token = $user->createToken("token")->plainTextToken;
         //$this->sendMail($user, new UserSignupMail($user));
-        return $this->registerOrLogin('Created User',UserResource::make($user),$token,201);
+        return $this->signup(UserResource::make($user),$token);
     }
 }
